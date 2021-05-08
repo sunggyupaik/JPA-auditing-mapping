@@ -6,8 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -34,6 +37,14 @@ public class OrderDetail {
     private String createdBy;
 
     private String updatedBy;
+
+    //OrderDetail N : 1 OrderGroup
+    @ManyToOne
+    private OrderGroup orderGroup;
+
+    //OrderDetail N: 1 Item
+    @ManyToOne
+    private Item item;
 
     @Builder
     public OrderDetail(Long id, String status, LocalDateTime arrivalDate, int quantity,

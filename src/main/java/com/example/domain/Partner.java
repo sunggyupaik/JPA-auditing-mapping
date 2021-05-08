@@ -6,9 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -43,6 +47,14 @@ public class Partner {
     private String createdBy;
 
     private String updatedBy;
+
+    //Partner 1 : N item
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "partner")
+    private List<Item> itemList;
+
+    //Partner N : 1 Category
+    @ManyToOne
+    private Category category;
 
     @Builder
     public Partner(Long id, String name, String status, String address, String callCenter,
