@@ -8,28 +8,25 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Item {
+public class User {
     @Id
     @GeneratedValue
     private Long id;
 
+    private String account;
+
+    private String password;
+
     private String status;
 
-    private String name;
+    private String email;
 
-    private String title;
-
-    private String text;
-
-    private BigDecimal price;
-
-    private String brandName;
+    private String phoneNumber;
 
     private LocalDateTime registeredAt;
 
@@ -44,17 +41,16 @@ public class Item {
     private String updatedBy;
 
     @Builder
-    public Item(Long id, String status, String name, String title, String text,
-                BigDecimal price, String brandName, LocalDateTime registeredAt,
+    public User(Long id, String account, String password, String status,
+                String email, String phoneNumber, LocalDateTime registeredAt,
                 LocalDateTime unregisteredAt, LocalDateTime createdAt,
                 LocalDateTime updatedAt, String createdBy, String updatedBy) {
         this.id = id;
+        this.account = account;
+        this.password = password;
         this.status = status;
-        this.name = name;
-        this.title = title;
-        this.text = text;
-        this.price = price;
-        this.brandName = brandName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
         this.registeredAt = registeredAt;
         this.unregisteredAt = unregisteredAt;
         this.createdAt = createdAt;

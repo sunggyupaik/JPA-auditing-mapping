@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
 public class Category {
     @Id
     @GeneratedValue
@@ -30,4 +29,16 @@ public class Category {
     private String createdBy;
 
     private String updatedBy;
+
+    @Builder
+    public Category(Long id, String type, String title, LocalDateTime createdAt,
+                    LocalDateTime updatedAt, String createdBy, String updatedBy) {
+        this.id = id;
+        this.type = type;
+        this.title = title;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.createdBy = createdBy;
+        this.updatedBy = updatedBy;
+    }
 }

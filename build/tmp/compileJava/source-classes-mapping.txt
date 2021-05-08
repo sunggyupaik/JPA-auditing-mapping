@@ -1,2 +1,23 @@
+com/example/domain/Item.java
+ com.example.domain.Item
+ com.example.domain.Item$ItemBuilder
+com/example/domain/OrderGroup.java
+ com.example.domain.OrderGroup
+ com.example.domain.OrderGroup$OrderGroupBuilder
+com/example/domain/Partner.java
+ com.example.domain.Partner
+ com.example.domain.Partner$PartnerBuilder
+com/example/domain/Category.java
+ com.example.domain.Category
+ com.example.domain.Category$CategoryBuilder
+com/example/domain/AdminUser.java
+ com.example.domain.AdminUser
+ com.example.domain.AdminUser$AdminUserBuilder
+com/example/domain/OrderDetail.java
+ com.example.domain.OrderDetail
+ com.example.domain.OrderDetail$OrderDetailBuilder
 com/example/App.java
  com.example.App
+com/example/domain/User.java
+ com.example.domain.User
+ com.example.domain.User$UserBuilder

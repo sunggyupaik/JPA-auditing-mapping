@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
 public class OrderGroup {
     @Id
     @GeneratedValue
@@ -45,4 +44,25 @@ public class OrderGroup {
     private String createdBy;
 
     private String updatedBy;
+
+    @Builder
+    public OrderGroup(Long id, String status, String orderType, String revAddress,
+                      String reName, String paymentType, BigDecimal totalPrice,
+                      int totalQuantity, LocalDateTime orderAt, LocalDateTime arrivalDate,
+                      LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy, String updatedBy) {
+        this.id = id;
+        this.status = status;
+        this.orderType = orderType;
+        this.revAddress = revAddress;
+        this.reName = reName;
+        this.paymentType = paymentType;
+        this.totalPrice = totalPrice;
+        this.totalQuantity = totalQuantity;
+        this.orderAt = orderAt;
+        this.arrivalDate = arrivalDate;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.createdBy = createdBy;
+        this.updatedBy = updatedBy;
+    }
 }

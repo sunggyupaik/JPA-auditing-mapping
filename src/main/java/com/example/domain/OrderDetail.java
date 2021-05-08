@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
 public class OrderDetail {
     @Id
     @GeneratedValue
@@ -35,4 +34,19 @@ public class OrderDetail {
     private String createdBy;
 
     private String updatedBy;
+
+    @Builder
+    public OrderDetail(Long id, String status, LocalDateTime arrivalDate, int quantity,
+                       BigDecimal totalPrice, LocalDateTime createdAt,
+                       LocalDateTime updatedAt, String createdBy, String updatedBy) {
+        this.id = id;
+        this.status = status;
+        this.arrivalDate = arrivalDate;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.createdBy = createdBy;
+        this.updatedBy = updatedBy;
+    }
 }

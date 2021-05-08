@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Builder
 public class AdminUser {
     @Id
     @GeneratedValue
@@ -44,4 +43,25 @@ public class AdminUser {
     private String createdBy;
 
     private String updatedBy;
+
+    @Builder
+    public AdminUser(Long id, String account, String password, String status,
+                     String role, LocalDateTime lastLoginAt, LocalDateTime passwordUpdatedAt,
+                     int login_fail_count, LocalDateTime registeredAt, LocalDateTime unregisteredAt,
+                     LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy, String updatedBy) {
+        this.id = id;
+        this.account = account;
+        this.password = password;
+        this.status = status;
+        this.role = role;
+        this.lastLoginAt = lastLoginAt;
+        this.passwordUpdatedAt = passwordUpdatedAt;
+        this.login_fail_count = login_fail_count;
+        this.registeredAt = registeredAt;
+        this.unregisteredAt = unregisteredAt;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.createdBy = createdBy;
+        this.updatedBy = updatedBy;
+    }
 }
