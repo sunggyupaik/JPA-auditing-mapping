@@ -17,16 +17,12 @@ public class UserUpdateRequest {
 
     private String phoneNumber;
 
-    //추후 @UpdatedBy 사용하고 해당 필드 제거하기
-    private String updatedBy;
 
-    public UserUpdateRequest(String password, String status, String email,
-                             String phoneNumber, String updatedBy) {
+    public UserUpdateRequest(String password, String status, String email, String phoneNumber) {
         this.password = password;
         this.status = status;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.updatedBy = updatedBy;
     }
 
     public User toEntity() {
@@ -35,7 +31,6 @@ public class UserUpdateRequest {
                 .status(this.status)
                 .email(this.email)
                 .phoneNumber(this.phoneNumber)
-                .updatedBy(this.updatedBy)
                 .build();
     }
 }
