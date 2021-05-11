@@ -5,6 +5,8 @@ import com.example.application.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -35,5 +37,10 @@ public class UserController {
     @DeleteMapping("/{id}")
     public UserGetResponse delete(@PathVariable Long id) {
         return userService.deleteUser(id);
+    }
+
+    @GetMapping("/{id}/order-group")
+    public UserOrderGroupGetResponse orderGroupGetAll(@PathVariable Long id) {
+        return userService.userOrderGroupGetAll(id);
     }
 }

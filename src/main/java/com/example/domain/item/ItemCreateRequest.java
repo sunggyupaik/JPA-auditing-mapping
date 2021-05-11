@@ -25,21 +25,15 @@ public class ItemCreateRequest {
 
     private String brandName;
 
-    private LocalDateTime registeredAt;
-
-    private String createdBy;
-
     @Builder
-    public ItemCreateRequest(String status, String name, String title, String text, BigDecimal price,
-                             String brandName, LocalDateTime registeredAt, String createdBy) {
+    public ItemCreateRequest(String status, String name, String title,
+                             String text, BigDecimal price, String brandName) {
         this.status = status;
         this.name = name;
         this.title = title;
         this.text = text;
         this.price = price;
         this.brandName = brandName;
-        this.registeredAt = registeredAt;
-        this.createdBy = createdBy;
     }
 
     public Item toEntity() {
@@ -50,8 +44,6 @@ public class ItemCreateRequest {
                 .text(this.text)
                 .price(this.price)
                 .brandName(this.brandName)
-                .registeredAt(this.registeredAt)
-                .createdBy(this.createdBy)
                 .build();
     }
 }

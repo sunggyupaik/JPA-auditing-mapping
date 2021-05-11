@@ -1,17 +1,18 @@
 package com.example.repository;
 
-import com.example.AppTest;
 import com.example.domain.user.User;
 import com.example.domain.user.UserCreateRequest;
-import com.example.infra.JpaUserRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.util.Random;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
-class UserRepositoryTest extends AppTest {
-    private Random random;
-
-    private JpaUserRepository jpaUserRepository;
+@DataJpaTest
+class UserRepositoryTest {
+    @Autowired
+    private UserRepository userRepository;
 
     private static final String ACCOUNT = "account";
     private static final String PASSWORD = "password";
@@ -19,25 +20,25 @@ class UserRepositoryTest extends AppTest {
     private static final String EMAIL = "email";
     private static final String PHONE_NUMBER = "phoneNumber";
 
-    UserRepositoryTest(JpaUserRepository jpaUserRepository) {
-        this.jpaUserRepository = jpaUserRepository;
-    }
-
     @Test
     public void createUser() {
-        random = new Random();
+        UserCreateRequest userCreateRequest = UserCreateRequest.builder()
+                .account(ACCOUNT)
+                .password(PASSWORD)
+                .status(STATUS)
+                .email(EMAIL)
+                .phoneNumber(PHONE_NUMBER)
+                .build();
 
-        for(int i=1; i<100; i++) {
-            UserCreateRequest userCreateRequest = UserCreateRequest.builder()
-                    .account(ACCOUNT + i)
-                    .password(PASSWORD + i)
-                    .status(STATUS + i)
-                    .email(EMAIL + i)
-                    .phoneNumber(PHONE_NUMBER + i)
-                    .build();
+        User user = userCreateRequest.toEntity();
+        User savedUser = userRepository.save(user);
 
-            User user = userCreateRequest.toEntity();
-            jpaUserRepository.save(user);
-        }
+        assertAll(
+                () -> assertThat(savedUser.getAccount()).isEqualTo(ACCOUNT),
+                () -> assertThat(savedUser.getPassword()).isEqualTo(PASSWORD),
+                () -> assertThat(savedUser.getStatus()).isEqualTo(STATUS),
+                () -> assertThat(savedUser.getEmail()).isEqualTo(EMAIL),
+                () -> assertThat(savedUser.getPhoneNumber()).isEqualTo(PHONE_NUMBER)
+        );
     }
 }

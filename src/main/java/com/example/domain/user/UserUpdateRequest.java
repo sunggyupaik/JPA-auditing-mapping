@@ -17,7 +17,6 @@ public class UserUpdateRequest {
 
     private String phoneNumber;
 
-
     public UserUpdateRequest(String password, String status, String email, String phoneNumber) {
         this.password = password;
         this.status = status;

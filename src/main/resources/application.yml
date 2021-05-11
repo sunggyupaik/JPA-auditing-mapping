@@ -1,0 +1,20 @@
+spring:
+
+  # Live Reload
+  devtools:
+    livereload:
+      enabled: true
+
+  # Mustache Cache
+  mustache:
+    cache:
+      false
+
+  # H2 Repository Location
+  datasource:
+    url: jdbc:h2:~/data/jpa-auditing-mapping
+
+  # Spring Jpa ddl
+  jpa:
+    hibernate:
+      ddl-auto: update

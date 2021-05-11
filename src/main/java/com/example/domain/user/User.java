@@ -1,6 +1,6 @@
 package com.example.domain.user;
 
-import com.example.domain.OrderGroup;
+import com.example.domain.ordergroup.OrderGroup;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -34,11 +34,6 @@ public class User {
     private String phoneNumber;
 
     @CreatedDate
-    private LocalDateTime registeredAt;
-
-    private LocalDateTime unregisteredAt;
-
-    @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
@@ -57,23 +52,21 @@ public class User {
     List<OrderGroup> orderGroupList = new ArrayList<>();
 
     @Builder
-    public User(Long id, String account, String password, String status,
-                String email, String phoneNumber, LocalDateTime registeredAt,
-                LocalDateTime unregisteredAt, LocalDateTime createdAt,
-                LocalDateTime updatedAt, String createdBy, String updatedBy, boolean deleted) {
+    public User(Long id, String account, String password, String status, String email, String phoneNumber,
+                LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy, String updatedBy,
+                boolean deleted, List<OrderGroup> orderGroupList) {
         this.id = id;
         this.account = account;
         this.password = password;
         this.status = status;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.registeredAt = registeredAt;
-        this.unregisteredAt = unregisteredAt;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
         this.deleted = deleted;
+        this.orderGroupList = orderGroupList;
     }
 
     public void changeFrom(UserUpdateRequest userUpdateRequest) {
@@ -85,6 +78,5 @@ public class User {
 
     public void delete() {
         this.deleted = true;
-        this.unregisteredAt = LocalDateTime.now();
     }
 }

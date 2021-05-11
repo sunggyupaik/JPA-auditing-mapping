@@ -1,5 +1,6 @@
-com/example/controller/ItemController.java
- com.example.controller.ItemController
+com/example/domain/Partner.java
+ com.example.domain.Partner
+ com.example.domain.Partner$PartnerBuilder
 com/example/repository/AdminUserRepository.java
  com.example.repository.AdminUserRepository
 com/example/config/JpaConfig.java
@@ -20,38 +21,18 @@ com/example/repository/CategoryRepository.java
  com.example.repository.CategoryRepository
 com/example/infra/JpaCategoryRepository.java
  com.example.infra.JpaCategoryRepository
-com/example/domain/item/ItemCreateResponse.java
- com.example.domain.item.ItemCreateResponse
- com.example.domain.item.ItemCreateResponse$ItemCreateResponseBuilder
-com/example/domain/item/ItemCreateRequest.java
- com.example.domain.item.ItemCreateRequest
- com.example.domain.item.ItemCreateRequest$ItemCreateRequestBuilder
-com/example/infra/JpaItemRepository.java
- com.example.infra.JpaItemRepository
-com/example/domain/Partner.java
- com.example.domain.Partner
- com.example.domain.Partner$PartnerBuilder
-com/example/application/ItemService.java
- com.example.application.ItemService
-com/example/repository/ItemRepository.java
- com.example.repository.ItemRepository
-com/example/repository/PartnerRepository.java
- com.example.repository.PartnerRepository
-com/example/domain/item/Item.java
- com.example.domain.item.Item
- com.example.domain.item.Item$ItemBuilder
-com/example/domain/BaseEntity.java
- com.example.domain.BaseEntity
-com/example/infra/JpaPartnerRepository.java
- com.example.infra.JpaPartnerRepository
-com/example/repository/OrderGroupRepository.java
- com.example.repository.OrderGroupRepository
 com/example/component/LoginUserAuditorAware.java
  com.example.component.LoginUserAuditorAware
+com/example/repository/PartnerRepository.java
+ com.example.repository.PartnerRepository
+com/example/infra/JpaPartnerRepository.java
+ com.example.infra.JpaPartnerRepository
 com/example/controller/UserController.java
  com.example.controller.UserController
 com/example/infra/JpaOrderDetailRepository.java
  com.example.infra.JpaOrderDetailRepository
+com/example/controller/ItemController.java
+ com.example.controller.ItemController
 com/example/infra/JpaOrderGroupRepository.java
  com.example.infra.JpaOrderGroupRepository
 com/example/domain/user/UserCreateRequest.java
@@ -61,27 +42,58 @@ com/example/infra/JpaUserRepository.java
  com.example.infra.JpaUserRepository
 com/example/repository/OrderDetailRepository.java
  com.example.repository.OrderDetailRepository
+com/example/application/UserService.java
+ com.example.application.UserService
+com/example/domain/item/ItemCreateResponse.java
+ com.example.domain.item.ItemCreateResponse
+ com.example.domain.item.ItemCreateResponse$ItemCreateResponseBuilder
+com/example/domain/ordergroup/OrderGroupCreateRequest.java
+ com.example.domain.ordergroup.OrderGroupCreateRequest
+ com.example.domain.ordergroup.OrderGroupCreateRequest$OrderGroupCreateRequestBuilder
+com/example/domain/user/UserUpdateRequest.java
+ com.example.domain.user.UserUpdateRequest
+com/example/infra/JpaItemRepository.java
+ com.example.infra.JpaItemRepository
+com/example/domain/item/ItemGetResponse.java
+ com.example.domain.item.ItemGetResponse
+ com.example.domain.item.ItemGetResponse$ItemGetResponseBuilder
+com/example/repository/OrderGroupRepository.java
+ com.example.repository.OrderGroupRepository
+com/example/domain/ordergroup/OrderGroupGetResponse.java
+ com.example.domain.ordergroup.OrderGroupGetResponse
+ com.example.domain.ordergroup.OrderGroupGetResponse$OrderGroupGetResponseBuilder
+com/example/domain/user/UserOrderGroupGetResponse.java
+ com.example.domain.user.UserOrderGroupGetResponse
+ com.example.domain.user.UserOrderGroupGetResponse$UserOrderGroupGetResponseBuilder
+com/example/application/ItemService.java
+ com.example.application.ItemService
 com/example/domain/user/UserCreateResponse.java
  com.example.domain.user.UserCreateResponse
  com.example.domain.user.UserCreateResponse$UserCreateResponseBuilder
-com/example/application/UserService.java
- com.example.application.UserService
+com/example/domain/item/Item.java
+ com.example.domain.item.Item
+ com.example.domain.item.Item$ItemBuilder
 com/example/domain/user/UserUpdateResponse.java
  com.example.domain.user.UserUpdateResponse
  com.example.domain.user.UserUpdateResponse$UserUpdateResponseBuilder
-com/example/domain/OrderGroup.java
- com.example.domain.OrderGroup
- com.example.domain.OrderGroup$OrderGroupBuilder
-com/example/repository/UserRepository.java
- com.example.repository.UserRepository
 com/example/domain/user/User.java
  com.example.domain.user.User
  com.example.domain.user.User$UserBuilder
-com/example/domain/user/UserUpdateRequest.java
- com.example.domain.user.UserUpdateRequest
+com/example/repository/UserRepository.java
+ com.example.repository.UserRepository
+com/example/domain/item/ItemCreateRequest.java
+ com.example.domain.item.ItemCreateRequest
+ com.example.domain.item.ItemCreateRequest$ItemCreateRequestBuilder
+com/example/domain/orderdetail/OrderDetail.java
+ com.example.domain.orderdetail.OrderDetail
+ com.example.domain.orderdetail.OrderDetail$OrderDetailBuilder
+com/example/repository/ItemRepository.java
+ com.example.repository.ItemRepository
+com/example/domain/ordergroup/OrderGroup.java
+ com.example.domain.ordergroup.OrderGroup
+ com.example.domain.ordergroup.OrderGroup$OrderGroupBuilder
 com/example/domain/user/UserGetResponse.java
  com.example.domain.user.UserGetResponse
  com.example.domain.user.UserGetResponse$UserGetResponseBuilder
-com/example/domain/OrderDetail.java
- com.example.domain.OrderDetail
- com.example.domain.OrderDetail$OrderDetailBuilder
+com/example/domain/BaseEntity.java
+ com.example.domain.BaseEntity
