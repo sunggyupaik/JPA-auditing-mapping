@@ -4,6 +4,7 @@ import com.example.application.UserService;
 import com.example.domain.user.UserCreateRequest;
 import com.example.domain.user.UserCreateResponse;
 import com.example.domain.user.UserGetResponse;
+import com.example.domain.user.UserOrderDetailGetResponse;
 import com.example.domain.user.UserOrderGroupGetResponse;
 import com.example.domain.user.UserUpdateRequest;
 import com.example.domain.user.UserUpdateResponse;
@@ -59,5 +60,10 @@ public class UserController {
     public UserOrderGroupGetResponse orderGroupGet(@PathVariable Long userId,
                                                    @PathVariable Long orderGroupId) {
         return userService.userOrderGroupGet(userId, orderGroupId);
+    }
+
+    @GetMapping("/{userId}/order-detail")
+    public UserOrderDetailGetResponse orderDetailGetList(@PathVariable Long userId) {
+        return userService.userOrderDetailGetList(userId);
     }
 }

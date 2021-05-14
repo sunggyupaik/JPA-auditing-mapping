@@ -2,12 +2,14 @@ package com.example.application;
 
 import com.example.domain.item.ItemGetResponse;
 import com.example.domain.orderdetail.OrderDetail;
+import com.example.domain.orderdetail.OrderDetailGetResponse;
 import com.example.domain.ordergroup.OrderGroup;
 import com.example.domain.ordergroup.OrderGroupGetResponse;
 import com.example.domain.user.User;
 import com.example.domain.user.UserCreateRequest;
 import com.example.domain.user.UserCreateResponse;
 import com.example.domain.user.UserGetResponse;
+import com.example.domain.user.UserOrderDetailGetResponse;
 import com.example.domain.user.UserOrderGroupGetResponse;
 import com.example.domain.user.UserUpdateRequest;
 import com.example.domain.user.UserUpdateResponse;
@@ -17,7 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,7 +85,7 @@ public class UserService {
 
         userGetResponse.setOrderGroupGetResponseList(orderGroupGetResponseList);
 
-        return UserOrderGroupGetResponse.of(userGetResponse);
+        return UserOrderGroupGetResponse.from(userGetResponse);
     }
 
     public UserOrderGroupGetResponse userOrderGroupGet(Long userId, Long orderGroupId) {
@@ -110,10 +112,26 @@ public class UserService {
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        List<OrderGroupGetResponse> list = new ArrayList<>();
-        list.add(orderGroupGetResponse);
-        userGetResponse.setOrderGroupGetResponseList(list);
+        userGetResponse.setOrderGroupGetResponseList(Collections.singletonList(orderGroupGetResponse));
 
-        return UserOrderGroupGetResponse.of(userGetResponse);
+        return UserOrderGroupGetResponse.from(userGetResponse);
+    }
+
+    public UserOrderDetailGetResponse userOrderDetailGetList(Long userId) {
+        //User
+        User user = findUser(userId);
+
+        //OrderDetail
+        List<OrderDetailGetResponse> orderDetailGetResponseList = user.getOrderGroupList().stream()
+                .map(OrderGroup::getOrderDetailList)
+                .flatMap(List::stream)
+                .map(orderDetail -> {
+                    OrderDetailGetResponse orderDetailGetResponse = OrderDetailGetResponse.of(orderDetail);
+                    orderDetailGetResponse.setItem(ItemGetResponse.of(orderDetail.getItem()));
+                    return orderDetailGetResponse;
+                })
+                .collect(Collectors.toList());
+
+        return UserOrderDetailGetResponse.from(orderDetailGetResponseList);
     }
 }
