@@ -18,22 +18,19 @@ public class UserCreateResponse {
 
     private String phoneNumber;
 
-    private LocalDateTime registeredAt;
-
     private LocalDateTime createdAt;
 
     private String createdBy;
 
     @Builder
     public UserCreateResponse(String account, String password, String status,
-                              String email, String phoneNumber, LocalDateTime registeredAt,
+                              String email, String phoneNumber,
                               LocalDateTime createdAt, String createdBy) {
         this.account = account;
         this.password = password;
         this.status = status;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.registeredAt = registeredAt;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
     }
@@ -45,7 +42,6 @@ public class UserCreateResponse {
                 .status(user.getStatus())
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
-                .registeredAt(user.getRegisteredAt())
                 .createdAt(user.getCreatedAt())
                 .createdBy(user.getCreatedBy())
                 .build();
