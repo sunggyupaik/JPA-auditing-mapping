@@ -40,7 +40,7 @@ public class OrderDetail extends BaseEntity {
     @ManyToOne
     private OrderGroup orderGroup;
 
-    //OrderDetail N: 1 Item
+    //OrderDetail N : 1 Item
     @ManyToOne
     private Item item;
 

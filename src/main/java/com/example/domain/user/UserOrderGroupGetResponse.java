@@ -1,8 +1,10 @@
 package com.example.domain.user;
 
-import lombok.*;
-
-import java.util.List;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -15,7 +17,7 @@ public class UserOrderGroupGetResponse {
         this.userGetResponse = userGetResponse;
     }
 
-    public static UserOrderGroupGetResponse of(UserGetResponse userGetResponse) {
+    public static UserOrderGroupGetResponse from(UserGetResponse userGetResponse) {
         return UserOrderGroupGetResponse.builder()
                 .userGetResponse(userGetResponse)
                 .build();

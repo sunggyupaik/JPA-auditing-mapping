@@ -65,6 +65,7 @@ public class OrderGroupGetResponse {
 
     public static OrderGroupGetResponse of(OrderGroup orderGroup) {
         return OrderGroupGetResponse.builder()
+                .id(orderGroup.getId())
                 .status(orderGroup.getStatus())
                 .orderType(orderGroup.getOrderType())
                 .revAddress(orderGroup.getRevAddress())

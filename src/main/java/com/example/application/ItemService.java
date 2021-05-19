@@ -7,7 +7,6 @@ import com.example.domain.item.ItemGetResponse;
 import com.example.repository.ItemRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -20,7 +19,6 @@ public class ItemService {
     public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
-
 
     public List<ItemGetResponse> getAllItems() {
         return itemRepository.findAll().stream()
