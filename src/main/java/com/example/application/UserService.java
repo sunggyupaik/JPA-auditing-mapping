@@ -14,9 +14,13 @@ import com.example.domain.user.UserOrderGroupGetResponse;
 import com.example.domain.user.UserUpdateRequest;
 import com.example.domain.user.UserUpdateResponse;
 import com.example.repository.UserRepository;
+import com.google.common.base.Preconditions;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import errors.UserNotFoundException;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
@@ -35,7 +39,7 @@ public class UserService {
     public UserGetResponse getUser(Long id) {
         return userRepository.findById(id)
                 .map(UserGetResponse::of)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 
     public UserCreateResponse createUser(UserCreateRequest userCreateRequest) {
