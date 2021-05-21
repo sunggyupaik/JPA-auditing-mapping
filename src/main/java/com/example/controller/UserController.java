@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import javax.validation.Valid;
+
 import com.example.application.UserService;
 import com.example.domain.user.UserCreateRequest;
 import com.example.domain.user.UserCreateResponse;
@@ -8,6 +10,7 @@ import com.example.domain.user.UserOrderDetailGetResponse;
 import com.example.domain.user.UserOrderGroupGetResponse;
 import com.example.domain.user.UserUpdateRequest;
 import com.example.domain.user.UserUpdateResponse;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +38,7 @@ public class UserController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserCreateResponse create(@RequestBody UserCreateRequest userCreateRequest) {
+    public UserCreateResponse create(@RequestBody @Valid UserCreateRequest userCreateRequest) {
         return userService.createUser(userCreateRequest);
     }
 

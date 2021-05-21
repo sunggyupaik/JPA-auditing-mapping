@@ -1,22 +1,31 @@
 package com.example.domain.user;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+
 import lombok.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
+@Builder
 public class UserCreateRequest {
-    private String account;
+    @Builder.Default
+    private String account = "";
 
-    private String password;
+    @Builder.Default
+    @Size(min=3, max=10, message = "길이는 3~10 이어야 합니다.")
+    private String password = "";
 
-    private String status;
+    @Builder.Default
+    private String status = "";
 
+    @Email(message = "이메일 형식을 맞춰야 합니다.")
     private String email;
 
-    private String phoneNumber;
+    @Builder.Default
+    private String phoneNumber = "";
 
-    @Builder
     public UserCreateRequest(String account, String password, String status,
                              String email, String phoneNumber) {
         this.account = account;
