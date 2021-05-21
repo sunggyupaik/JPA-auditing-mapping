@@ -45,7 +45,7 @@ public class User {
     @LastModifiedBy
     private String updatedBy;
 
-    private boolean deleted = false;
+    private boolean deleted;
 
     //User 1 : N orderGroup
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
