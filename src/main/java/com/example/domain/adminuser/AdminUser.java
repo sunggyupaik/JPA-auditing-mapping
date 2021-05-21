@@ -1,13 +1,11 @@
-package com.example.domain;
+package com.example.domain.adminuser;
 
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -19,8 +17,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @ToString
+@Builder
 public class AdminUser {
     @Id
     @GeneratedValue
@@ -30,7 +30,8 @@ public class AdminUser {
 
     private String password;
 
-    private String status;
+    @Builder.Default
+    private String status = "REGISTERED";
 
     private String role;
 
@@ -38,11 +39,10 @@ public class AdminUser {
 
     private LocalDateTime passwordUpdatedAt;
 
-    private int login_fail_count;
+    @Builder.Default
+    private int loginFailCount = 0;
 
-    private LocalDateTime registeredAt;
-
-    private LocalDateTime unregisteredAt;
+    private String sleepTime;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -50,17 +50,9 @@ public class AdminUser {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    @CreatedBy
-    private String createdBy;
-
-    @LastModifiedBy
-    private String updatedBy;
-
-    @Builder
     public AdminUser(Long id, String account, String password, String status,
                      String role, LocalDateTime lastLoginAt, LocalDateTime passwordUpdatedAt,
-                     int login_fail_count, LocalDateTime registeredAt, LocalDateTime unregisteredAt,
-                     LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy, String updatedBy) {
+                     int loginFailCount, String sleepTime, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -68,12 +60,9 @@ public class AdminUser {
         this.role = role;
         this.lastLoginAt = lastLoginAt;
         this.passwordUpdatedAt = passwordUpdatedAt;
-        this.login_fail_count = login_fail_count;
-        this.registeredAt = registeredAt;
-        this.unregisteredAt = unregisteredAt;
+        this.loginFailCount = loginFailCount;
+        this.sleepTime = sleepTime;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.createdBy = createdBy;
-        this.updatedBy = updatedBy;
     }
 }

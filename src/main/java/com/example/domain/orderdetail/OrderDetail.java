@@ -1,25 +1,29 @@
-package com.example.domain;
+package com.example.domain.orderdetail;
 
+import com.example.domain.BaseEntity;
+import com.example.domain.item.Item;
+import com.example.domain.ordergroup.OrderGroup;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
 @ToString(exclude = {"orderGroup", "item"})
-public class OrderDetail {
+public class OrderDetail extends BaseEntity {
     @Id
     @GeneratedValue
     private Long id;
@@ -32,34 +36,31 @@ public class OrderDetail {
 
     private BigDecimal totalPrice;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
-
-    private String createdBy;
-
-    private String updatedBy;
-
     //OrderDetail N : 1 OrderGroup
     @ManyToOne
     private OrderGroup orderGroup;
 
-    //OrderDetail N: 1 Item
+    //OrderDetail N : 1 Item
     @ManyToOne
     private Item item;
 
     @Builder
     public OrderDetail(Long id, String status, LocalDateTime arrivalDate, int quantity,
-                       BigDecimal totalPrice, LocalDateTime createdAt,
-                       LocalDateTime updatedAt, String createdBy, String updatedBy) {
+                       BigDecimal totalPrice, OrderGroup orderGroup, Item item) {
         this.id = id;
         this.status = status;
         this.arrivalDate = arrivalDate;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.createdBy = createdBy;
-        this.updatedBy = updatedBy;
+        this.orderGroup = orderGroup;
+        this.item = item;
+    }
+
+    public void setOrderGroup(OrderGroup orderGroup) {
+        this.orderGroup = orderGroup;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

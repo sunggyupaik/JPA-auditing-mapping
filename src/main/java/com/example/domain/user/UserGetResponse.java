@@ -1,5 +1,6 @@
 package com.example.domain.user;
 
+import com.example.domain.ordergroup.OrderGroupGetResponse;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,10 +26,6 @@ public class UserGetResponse {
 
     private String phoneNumber;
 
-    private LocalDateTime registeredAt;
-
-    private LocalDateTime unregisteredAt;
-
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
@@ -38,23 +36,24 @@ public class UserGetResponse {
 
     private boolean delete;
 
+    private List<OrderGroupGetResponse> orderGroupGetResponseList;
+
     @Builder
     public UserGetResponse(Long id, String account, String password, String status, String email,
-                           String phoneNumber, LocalDateTime registeredAt, LocalDateTime unregisteredAt,
-                           LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy, String updatedBy, boolean delete) {
+                           String phoneNumber, LocalDateTime createdAt, LocalDateTime updatedAt,
+                           String createdBy, String updatedBy, boolean delete, List<OrderGroupGetResponse> orderGroupGetResponseList) {
         this.id = id;
         this.account = account;
         this.password = password;
         this.status = status;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.registeredAt = registeredAt;
-        this.unregisteredAt = unregisteredAt;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
         this.delete = delete;
+        this.orderGroupGetResponseList = orderGroupGetResponseList;
     }
 
     public static UserGetResponse of(User user) {
@@ -65,13 +64,18 @@ public class UserGetResponse {
                 .status(user.getStatus())
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
-                .registeredAt(user.getRegisteredAt())
-                .unregisteredAt(user.getUnregisteredAt())
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())
                 .createdBy(user.getCreatedBy())
                 .updatedBy(user.getUpdatedBy())
                 .delete(user.isDeleted())
+//                .orderGroupGetResponseList(user.getOrderGroupList().stream()
+//                        .map(orderGroup -> OrderGroupGetResponse.of(orderGroup))
+//                        .collect(Collectors.toList()))
                 .build();
+    }
+
+    public void setOrderGroupGetResponseList(List<OrderGroupGetResponse> orderGroupGetResponseList) {
+        this.orderGroupGetResponseList = orderGroupGetResponseList;
     }
 }

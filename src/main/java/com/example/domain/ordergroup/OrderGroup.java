@@ -1,13 +1,17 @@
-package com.example.domain;
+package com.example.domain.ordergroup;
 
+import com.example.domain.BaseEntity;
+import com.example.domain.orderdetail.OrderDetail;
 import com.example.domain.user.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,8 +24,9 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(exclude = {"user"})
-public class OrderGroup {
+@EntityListeners(AuditingEntityListener.class)
+@ToString(exclude = {"user", "orderDetailList"})
+public class OrderGroup extends BaseEntity {
     @Id
     @GeneratedValue
     private Long id;
@@ -32,7 +37,7 @@ public class OrderGroup {
 
     private String revAddress;
 
-    private String reName;
+    private String revName;
 
     private String paymentType;
 
@@ -44,14 +49,6 @@ public class OrderGroup {
 
     private LocalDateTime arrivalDate;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
-
-    private String createdBy;
-
-    private String updatedBy;
-
     //OrderGroup N : 1 User
     @ManyToOne
     private User user;
@@ -62,22 +59,27 @@ public class OrderGroup {
 
     @Builder
     public OrderGroup(Long id, String status, String orderType, String revAddress,
-                      String reName, String paymentType, BigDecimal totalPrice,
-                      int totalQuantity, LocalDateTime orderAt, LocalDateTime arrivalDate,
-                      LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy, String updatedBy) {
+                      String revName, String paymentType, BigDecimal totalPrice, int totalQuantity,
+                      LocalDateTime orderAt, LocalDateTime arrivalDate, User user, List<OrderDetail> orderDetailList) {
         this.id = id;
         this.status = status;
         this.orderType = orderType;
         this.revAddress = revAddress;
-        this.reName = reName;
+        this.revName = revName;
         this.paymentType = paymentType;
         this.totalPrice = totalPrice;
         this.totalQuantity = totalQuantity;
         this.orderAt = orderAt;
         this.arrivalDate = arrivalDate;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.createdBy = createdBy;
-        this.updatedBy = updatedBy;
+        this.user = user;
+        this.orderDetailList = orderDetailList;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
     }
 }
