@@ -4,6 +4,8 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+import com.example.domain.Address;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
@@ -22,10 +24,12 @@ public class UserCreateResponse {
 
     private String createdBy;
 
+    private Address address;
+
     @Builder
     public UserCreateResponse(String account, String password, String status,
                               String email, String phoneNumber,
-                              LocalDateTime createdAt, String createdBy) {
+                              LocalDateTime createdAt, String createdBy, Address address) {
         this.account = account;
         this.password = password;
         this.status = status;
@@ -33,6 +37,7 @@ public class UserCreateResponse {
         this.phoneNumber = phoneNumber;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
+        this.address = address;
     }
 
     public static UserCreateResponse of(User user) {
@@ -44,6 +49,7 @@ public class UserCreateResponse {
                 .phoneNumber(user.getPhoneNumber())
                 .createdAt(user.getCreatedAt())
                 .createdBy(user.getCreatedBy())
+                .address(user.getAddress())
                 .build();
     }
 }

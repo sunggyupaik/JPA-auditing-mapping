@@ -1,5 +1,6 @@
 package com.example.domain.user;
 
+import com.example.domain.Address;
 import com.example.domain.ordergroup.OrderGroup;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
@@ -9,7 +10,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -49,6 +49,9 @@ public class User {
 
     private boolean deleted;
 
+    @Embedded
+    private Address address;
+
     //User 1 : N orderGroup
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     List<OrderGroup> orderGroupList = new ArrayList<>();
@@ -69,6 +72,10 @@ public class User {
         this.updatedBy = updatedBy;
         this.deleted = deleted;
         this.orderGroupList = orderGroupList;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public void changeFrom(UserUpdateRequest userUpdateRequest) {

@@ -1,6 +1,7 @@
 package com.example.domain.ordergroup;
 
 import com.example.domain.BaseEntity;
+import com.example.domain.Delivery;
 import com.example.domain.orderdetail.OrderDetail;
 import com.example.domain.user.User;
 import lombok.AccessLevel;
@@ -17,6 +18,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -49,6 +52,10 @@ public class OrderGroup extends BaseEntity {
 
     private LocalDateTime arrivalDate;
 
+    //Delivery 1 : 1 OrderGroup
+    @OneToOne
+    private Delivery delivery;
+
     //OrderGroup N : 1 User
     @ManyToOne
     private User user;
@@ -59,8 +66,8 @@ public class OrderGroup extends BaseEntity {
 
     @Builder
     public OrderGroup(Long id, String status, String orderType, String revAddress,
-                      String revName, String paymentType, BigDecimal totalPrice, int totalQuantity,
-                      LocalDateTime orderAt, LocalDateTime arrivalDate, User user, List<OrderDetail> orderDetailList) {
+                      String revName, String paymentType, BigDecimal totalPrice, int totalQuantity, LocalDateTime orderAt, 
+                      LocalDateTime arrivalDate, Delivery delivery, User user, List<OrderDetail> orderDetailList) {
         this.id = id;
         this.status = status;
         this.orderType = orderType;
@@ -71,6 +78,7 @@ public class OrderGroup extends BaseEntity {
         this.totalQuantity = totalQuantity;
         this.orderAt = orderAt;
         this.arrivalDate = arrivalDate;
+        this.delivery = delivery;
         this.user = user;
         this.orderDetailList = orderDetailList;
     }

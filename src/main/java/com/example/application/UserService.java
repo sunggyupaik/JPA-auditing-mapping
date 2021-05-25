@@ -1,5 +1,6 @@
 package com.example.application;
 
+import com.example.domain.Address;
 import com.example.domain.item.ItemGetResponse;
 import com.example.domain.orderdetail.OrderDetail;
 import com.example.domain.orderdetail.OrderDetailGetResponse;
@@ -14,7 +15,6 @@ import com.example.domain.user.UserOrderGroupGetResponse;
 import com.example.domain.user.UserUpdateRequest;
 import com.example.domain.user.UserUpdateResponse;
 import com.example.repository.UserRepository;
-import com.google.common.base.Preconditions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -44,6 +44,12 @@ public class UserService {
 
     public UserCreateResponse createUser(UserCreateRequest userCreateRequest) {
         User user = userCreateRequest.toEntity();
+        Address address = Address.builder()
+                            .city(userCreateRequest.getCity())
+                            .street(userCreateRequest.getStreet())
+                            .zipcode(userCreateRequest.getZipcode())
+                            .build();
+        user.setAddress(address);
         User savedUser = userRepository.save(user);
         return UserCreateResponse.of(savedUser);
     }
