@@ -1,5 +1,6 @@
 package com.example.domain.ordergroup;
 
+import com.example.domain.Delivery;
 import com.example.domain.orderdetail.OrderDetail;
 import com.example.domain.user.User;
 import lombok.AccessLevel;
@@ -34,14 +35,16 @@ public class OrderGroupCreateRequest {
 
     private LocalDateTime arrivalDate;
 
+    private Delivery delivery;
+
     private User user;
 
     private List<OrderDetail> orderDetailList;
 
     @Builder
     public OrderGroupCreateRequest(String status, String orderType, String revAddress,
-                                   String revName, String paymentType, BigDecimal totalPrice,
-                                   int totalQuantity, LocalDateTime orderAt, LocalDateTime arrivalDate,
+                                   String revName, String paymentType, BigDecimal totalPrice, int totalQuantity,
+                                   LocalDateTime orderAt, LocalDateTime arrivalDate, Delivery delivery,
                                    User user, List<OrderDetail> orderDetailList) {
         this.status = status;
         this.orderType = orderType;
@@ -52,6 +55,7 @@ public class OrderGroupCreateRequest {
         this.totalQuantity = totalQuantity;
         this.orderAt = orderAt;
         this.arrivalDate = arrivalDate;
+        this.delivery = delivery;
         this.user = user;
         this.orderDetailList = orderDetailList;
     }
@@ -67,6 +71,7 @@ public class OrderGroupCreateRequest {
                 .totalQuantity(this.totalQuantity)
                 .orderAt(this.orderAt)
                 .arrivalDate(this.arrivalDate)
+                .delivery(this.delivery)
                 .user(this.user)
                 .orderDetailList(this.orderDetailList)
                 .build();

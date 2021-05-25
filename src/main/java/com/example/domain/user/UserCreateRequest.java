@@ -1,6 +1,7 @@
 package com.example.domain.user;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import lombok.*;
@@ -26,13 +27,25 @@ public class UserCreateRequest {
     @Builder.Default
     private String phoneNumber = "";
 
+    @NotBlank(message = "도시는 필수값입니다")
+    private String city;
+
+    @NotBlank(message = "거리 주소는 필수값입니다")
+    private String street;
+
+    @NotBlank(message = "우편번호는 필수값입니다")
+    private String zipcode;
+
     public UserCreateRequest(String account, String password, String status,
-                             String email, String phoneNumber) {
+                             String email, String phoneNumber, String city, String street, String zipcode) {
         this.account = account;
         this.password = password;
         this.status = status;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.city = city;
+        this.street = street;
+        this.zipcode = zipcode;
     }
 
     public User toEntity() {

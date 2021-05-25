@@ -1,5 +1,6 @@
 package com.example.domain.ordergroup;
 
+import com.example.domain.Delivery;
 import com.example.domain.item.ItemGetResponse;
 import lombok.*;
 
@@ -39,13 +40,15 @@ public class OrderGroupGetResponse {
 
     private String updatedBy;
 
+    private Delivery delivery;
+
     private List<ItemGetResponse> itemGetResponseList;
 
     @Builder
     public OrderGroupGetResponse(Long id, String status, String orderType, String revAddress, String revName,
                                  String paymentType, BigDecimal totalPrice, int totalQuantity, LocalDateTime orderAt,
                                  LocalDateTime arrivalDate, LocalDateTime createdAt, LocalDateTime updatedAt,
-                                 String createdBy, String updatedBy, List<ItemGetResponse> itemGetResponseList) {
+                                 String createdBy, String updatedBy, Delivery delivery, List<ItemGetResponse> itemGetResponseList) {
         this.id = id;
         this.status = status;
         this.orderType = orderType;
@@ -60,6 +63,7 @@ public class OrderGroupGetResponse {
         this.updatedAt = updatedAt;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
+        this.delivery = delivery;
         this.itemGetResponseList = itemGetResponseList;
     }
 
@@ -79,6 +83,7 @@ public class OrderGroupGetResponse {
                 .updatedAt(orderGroup.getUpdatedAt())
                 .createdBy(orderGroup.getCreatedBy())
                 .updatedBy(orderGroup.getUpdatedBy())
+                .delivery(orderGroup.getDelivery())
                 .build();
     }
 
