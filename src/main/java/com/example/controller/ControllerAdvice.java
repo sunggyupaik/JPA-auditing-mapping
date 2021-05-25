@@ -3,6 +3,9 @@ package com.example.controller;
 import com.example.dto.Error;
 import com.example.dto.ErrorResponse;
 import errors.UserNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.ArrayList;
 import java.util.List;
+import errors.UserNotFoundException;
 
 @RestControllerAdvice
 public class ControllerAdvice {
